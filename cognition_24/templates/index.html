@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visionary Extractor - Amazon ML 2024</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: url('static/amazon.png') no-repeat center center; 
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            padding: 40px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+        }
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5em;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px black;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            height: 50px;
+            font-size: 1.2em;
+        }
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #FFD700;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden initially */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #FFD700;
+        }
+        .tagline {
+            font-size: 1em;
+            color: #FFD700;
+            margin-top: 5px;
+        }
+        .note {
+            font-size: 0.9em;
+            color: red;
+            margin-top: 15px;
+        }
+        .note i {
+            margin-right: 8px; /* Spacing between icon and text */
+            color: #FFD700; /* Icon color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Visionary Extractor - Amazon ML 2024</h1>
+        <form id="predictionForm" action="/predict" method="post">
+            <div class="form-group">
+                <label for="image_link">Image URL:</label>
+                <input type="text" class="form-control" id="image_link" name="image_link" placeholder="Enter Image URL Here" required>
+            </div>
+            <div class="form-group">
+                <label for="entity_name">Entity Name:</label>
+                <select class="form-control" id="entity_name" name="entity_name" required>
+                    <option value="" disabled selected>Select Entity</option>
+                    <option value="width">Width</option>
+                    <option value="depth">Depth</option>
+                    <option value="height">Height</option>
+                    <option value="item_weight">Item Weight</option>
+                    <option value="maximum_weight_recommendation">Max Weight Recommendation</option>
+                    <option value="voltage">Voltage</option>
+                    <option value="wattage">Wattage</option>
+                    <option value="item_volume">Item Volume</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-warning btn-block">Predict</button>
+        </form>
+
+        <div class="note">
+            <i class="fas fa-info-circle"></i>
+            ***This model predicts only using the labeled product images.***
+        </div>
+        
+        <!-- Loader -->
+        <div class="loader" id="loader"></div>
+        
+        <div class="copyright">
+            © 2024 by Dipak Ghadge, SIESGST Student, AIML Department. All rights reserved.
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // On form submit, show the loader
+            $('#predictionForm').on('submit', function(e) {
+                $('#loader').show();
+            });
+        });
+    </script>
+</body>
+</html>
